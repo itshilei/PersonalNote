@@ -1,5 +1,7 @@
 package bluecup.com.personalnote;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -48,14 +50,43 @@ public class RegisterActivity extends ActionBarActivity {
                 String password = mUserPassword.getText().toString().trim();
 
                 //Bug! can not resolve the empty input. Cause force quit
-                /*
-                if(null == username){
-                    Toast.makeText(RegisterActivity.this, "You must enter the Username!", Toast.LENGTH_LONG).show();
 
-                }else {
+                if (username.isEmpty()) {
+                    //when username is null
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("Username can not be empty!");
+                    builder.setTitle("Sorry");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // close the dialog
+                            dialog.dismiss();
+                        }
+                    });
+                    // show dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
 
-                }
-                */
+                }else if(password.isEmpty()){
+
+                    //when password is null
+                    AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                    builder.setMessage("Password can not be empty!");
+                    builder.setTitle("Sorry");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // close the dialog
+                            dialog.dismiss();
+                        }
+                    });
+                    // show dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }else{
+
+
                     //store user to Parse
                     ParseUser user = new ParseUser();
                     user.setUsername(username);
@@ -83,8 +114,7 @@ public class RegisterActivity extends ActionBarActivity {
                             }
                         }
                     });
-
-
+                }
 
 
             }

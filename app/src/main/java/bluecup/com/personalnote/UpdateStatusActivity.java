@@ -51,42 +51,62 @@ public class UpdateStatusActivity extends ActionBarActivity {
                 //Get the user status enteered data, then convert it to a string
                 String newStatus = mStatusUpdate.getText().toString();
 
-                //save to update to Parse
-                ParseObject statusObj = new ParseObject("Status");
+                if (newStatus.trim().isEmpty()) {
 
-                statusObj.put("user",currentUserStr);
-                statusObj.put("postedStatus",newStatus);
-
-                statusObj.saveInBackground(new SaveCallback() {
-                    @Override
-                    public void done(ParseException e) {
-                        if (null == e){
-                            //successfully stored new status in parse
-                            Toast.makeText(UpdateStatusActivity.this,"Success!", Toast.LENGTH_LONG).show();
-
-                            //Take user to home
-                            Intent takeUserToHomeIntent = new Intent(UpdateStatusActivity.this,HomeActivity.class);
-                            startActivity(takeUserToHomeIntent);
-
-                        }else {
-                            //there was a problem to save the status
-                            AlertDialog.Builder builder = new AlertDialog.Builder(UpdateStatusActivity.this);
-                            builder.setMessage(e.getMessage());
-                            builder.setTitle("Sorry");
-                            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    // close the dialog
-                                    dialog.dismiss();
-                                }
-                            });
-                            // show dialog
-                            AlertDialog dialog = builder.create();
-                            dialog.show();
-
+                    //when status is null
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UpdateStatusActivity.this);
+                    builder.setMessage("Status can not be empty!");
+                    builder.setTitle("Sorry");
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // close the dialog
+                            dialog.dismiss();
                         }
-                    }
-                });
+                    });
+                    // show dialog
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                } else {
+
+                    //save to update to Parse
+                    ParseObject statusObj = new ParseObject("Status");
+
+                    statusObj.put("user", currentUserStr);
+                    statusObj.put("postedStatus", newStatus);
+
+                    statusObj.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (null == e) {
+                                //successfully stored new status in parse
+                                Toast.makeText(UpdateStatusActivity.this, "Success!", Toast.LENGTH_LONG).show();
+
+                                //Take user to home
+                                Intent takeUserToHomeIntent = new Intent(UpdateStatusActivity.this, HomeActivity.class);
+                                startActivity(takeUserToHomeIntent);
+
+                            } else {
+                                //there was a problem to save the status
+                                AlertDialog.Builder builder = new AlertDialog.Builder(UpdateStatusActivity.this);
+                                builder.setMessage(e.getMessage());
+                                builder.setTitle("Sorry");
+                                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // close the dialog
+                                        dialog.dismiss();
+                                    }
+                                });
+                                // show dialog
+                                AlertDialog dialog = builder.create();
+                                dialog.show();
+
+                            }
+                        }
+                    });
+                }
             }
         });
     }
@@ -105,7 +125,6 @@ public class UpdateStatusActivity extends ActionBarActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
 
 
         //noinspection SimplifiableIfStatement
