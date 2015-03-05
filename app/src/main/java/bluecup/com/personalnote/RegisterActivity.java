@@ -1,9 +1,12 @@
 package bluecup.com.personalnote;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.parse.Parse;
+import com.parse.ParseObject;
 
 
 public class RegisterActivity extends ActionBarActivity {
@@ -12,6 +15,15 @@ public class RegisterActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+
+        Parse.initialize(this, "YFeIibITvb9xarAQNB5gDuEVJpROfrnzVAqA4y2M", "AAF1VKH9U4LWaqUNhFasQARDnhUrboOMslJuKK1V");
+
+        ParseObject testObject = new ParseObject("TestObject2");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
     }
 
 
