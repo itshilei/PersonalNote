@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.parse.ParseUser;
+
 
 public class HomeActivity extends ActionBarActivity {
 
@@ -45,10 +47,14 @@ public class HomeActivity extends ActionBarActivity {
                 //take user to update status activity
                 Intent intent = new Intent(this, UpdateStatusActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.logoutUser:
                 //logout the user
+                ParseUser.logOut();
+
+                //take user back to the login activity
+                Intent takeUserToLoginIntent = new Intent(this,LoginActivity.class);
+                startActivity(takeUserToLoginIntent);
                 break;
 
         }
