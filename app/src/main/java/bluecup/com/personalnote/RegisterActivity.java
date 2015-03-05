@@ -77,7 +77,7 @@ public class RegisterActivity extends ActionBarActivity {
                                 Toast.makeText(RegisterActivity.this, "Sign up successful!", Toast.LENGTH_LONG).show();
 
                                 //take the user to homepage
-                                Intent takeUserHome = new Intent(RegisterActivity.this, HomepageActivity.class);
+                                Intent takeUserHome = new Intent(RegisterActivity.this, HomeActivity.class);
                                 startActivity(takeUserHome);
 
                             } else {

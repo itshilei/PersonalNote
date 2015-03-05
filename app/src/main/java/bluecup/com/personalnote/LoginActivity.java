@@ -2,6 +2,7 @@ package bluecup.com.personalnote;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -43,8 +44,6 @@ public class LoginActivity extends ActionBarActivity {
                 String password = mPassword.getText().toString().trim();
 
 
-
-
                 // login with Parse
                 ParseUser.logInInBackground(username, password, new LogInCallback() {
                     public void done(ParseUser user, ParseException e) {
@@ -52,7 +51,11 @@ public class LoginActivity extends ActionBarActivity {
                             // Hooray! The user is logged in.
                             Toast.makeText(LoginActivity.this, "Login successful!", Toast.LENGTH_LONG).show();
 
-                            //take user to the homepage
+                            //take user to the home activity
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                            startActivity(intent);
+
+
 
                         } else {
                             // Signup failed. Look at the ParseException to see what happened.
@@ -73,6 +76,17 @@ public class LoginActivity extends ActionBarActivity {
                         }
                     }
                 });
+            }
+        });
+
+
+        // switch to RegisterActivity when click mCreateAccountButton
+        mCreateAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // switch to RegistertActivity
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
