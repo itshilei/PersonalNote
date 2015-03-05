@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
@@ -29,10 +28,6 @@ public class RegisterActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-
-        Parse.initialize(this, "YFeIibITvb9xarAQNB5gDuEVJpROfrnzVAqA4y2M", "AAF1VKH9U4LWaqUNhFasQARDnhUrboOMslJuKK1V");
 
         //initialize
         mUsername = (EditText) findViewById(R.id.usernameRegisterEditText);

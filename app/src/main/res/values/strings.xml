@@ -7,4 +7,5 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_home">HomeActivity</string>
     <string name="title_activity_update_status">UpdateStatusActivity</string>
+    <string name="title_activity_parse_application">ParseApplication</string>
 </resources>
