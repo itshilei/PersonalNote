@@ -33,6 +33,7 @@ public class HomeActivity extends ListActivity {
         if (currentUser != null) {
             // do some query then display them
             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Status");
+            query.orderByDescending("user");
             query.findInBackground(new FindCallback<ParseObject>() {
                 @Override
                 public void done(List<ParseObject> statusObjArray, ParseException e) {
