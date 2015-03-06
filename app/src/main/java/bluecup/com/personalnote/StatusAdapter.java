@@ -47,8 +47,8 @@ public class StatusAdapter extends ArrayAdapter<ParseObject> {
         ParseObject statusObj = mStatus.get(position);
 
         //usermane
-        String usernameStr = statusObj.getString("username");
-        holder.statusViewHolder.setText(usernameStr);
+        String usernameStr = statusObj.getString("user");
+        holder.usernameViewHolder.setText(usernameStr);
 
         //status
         String statusStr = statusObj.getString("postedStatus");
